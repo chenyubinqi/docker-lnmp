@@ -2,7 +2,7 @@ FROM nginx
 
 ADD  nginx.conf      /etc/nginx/nginx.conf
 ADD  conf/*    /etc/nginx/conf.d/
-RUN  mkdir /opt/htdocs && mkdir /opt/log && mkdir /opt/log/nginx
-RUN  chown -R www-data.www-data /opt/htdocs /opt/log
+RUN  mkdir /opt/htdocs 
+RUN  chown -R www-data.www-data /opt/htdocs 
 
-VOLUME ["/opt"]
+WORKDIR /opt

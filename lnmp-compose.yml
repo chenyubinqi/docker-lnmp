@@ -5,8 +5,9 @@ nginx:
     links:
       - "php"
     volumes:
-      - ~/project:/opt
-      - ~/docker/log/nginx:/opt/log/nginx
+      - ~/PhpstormProjects:/opt/PhpstormProjects
+      - ~/project:/opt/htdocs
+      - ~/docker/log/nginx:/var/log/nginx
 
 php:
     build: ./php
@@ -15,7 +16,8 @@ php:
     links:
       - "mysql"
     volumes:
-      - ~/project:/opt
+      - ~/PhpstormProjects:/opt/PhpstormProjects
+      - ~/project:/opt/htdocs
 
 mysql:
     build: ./mysql
