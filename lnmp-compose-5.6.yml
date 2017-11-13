@@ -1,7 +1,7 @@
 nginx:
     build: ./nginx
     ports:
-      - "8056:80"
+      - "80:80"
     links:
       - "php"
     volumes:
@@ -12,7 +12,7 @@ nginx:
 php:
     build: ./php/5.6
     ports:
-      - "9056:9000"
+      - "9000:9000"
     links:
       - "mysql"
     volumes:
@@ -22,7 +22,7 @@ php:
 mysql:
     build: ./mysql
     ports:
-      - "3356:3306"
+      - "3306:3306"
     volumes:
       - ~/docker/data/mysql:/var/lib/mysql
     environment:
