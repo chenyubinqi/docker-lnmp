@@ -25,6 +25,9 @@ RUN curl -fsSL 'http://pecl.php.net/get/swoole-2.0.7.tgz' -o swoole.tar.gz \
     && rm -r swoole \
     && docker-php-ext-enable swoole
 
+RUN pecl install pthreads-2.0.10 \
+    && docker-php-ext-enable pthreads
+
 ADD composer.phar /usr/local/bin/composer
 RUN chmod 755 /usr/local/bin/composer
 
