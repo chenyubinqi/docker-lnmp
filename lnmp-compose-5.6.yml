@@ -1,25 +1,33 @@
-nginx:
+version: '2'
+services:
+  nginx:
     build: ./nginx
     ports:
       - "80:80"
-    links:
-      - "php"
+#    links:
+#      - "php"
+    volumes_from:
+          - php:ro
     volumes:
-      - ~/PhpstormProjects:/opt/PhpstormProjects
-      - ~/project:/opt/htdocs
       - ~/docker/log/nginx:/var/log/nginx
+    networks:
+      lnmp:
+        ipv4_address: 172.18.0.2
 
-php:
+  php:
     build: ./php/5.6
     ports:
       - "9000:9000"
-    links:
-      - "mysql"
+#    links:
+#      - "mysql"
     volumes:
       - ~/PhpstormProjects:/opt/PhpstormProjects
       - ~/project:/opt/htdocs
+    networks:
+      lnmp:
+        ipv4_address: 172.18.0.3
 
-mysql:
+  mysql:
     build: ./mysql
     ports:
       - "3306:3306"
@@ -27,3 +35,14 @@ mysql:
       - ~/docker/data/mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      lnmp:
+        ipv4_address: 172.18.0.4
+networks:
+  lnmp:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.18.0.0/24
+        gateway: 172.18.0.1
