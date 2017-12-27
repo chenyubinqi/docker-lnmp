@@ -12,7 +12,7 @@ services:
       - ~/tmp/log/nginx:/var/log/nginx
     container_name: nginx
     networks:
-      lnmp:
+      default:
         ipv4_address: 172.18.0.2
 
   php:
@@ -26,7 +26,7 @@ services:
       - ~/htdocs:/opt/htdocs
     container_name: php
     networks:
-      lnmp:
+      default:
         ipv4_address: 172.18.0.3
 
   mysql:
@@ -39,10 +39,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     networks:
-      lnmp:
+      default:
         ipv4_address: 172.18.0.4
 networks:
-  lnmp:
+  default:
     driver: bridge
     ipam:
       driver: default
