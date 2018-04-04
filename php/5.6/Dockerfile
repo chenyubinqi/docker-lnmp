@@ -11,14 +11,14 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_mysql \
     && docker-php-ext-install sysvmsg sysvsem sysvshm
 
-RUN curl -fsSL 'http://pecl.php.net/get/swoole-2.0.7.tgz' -o swoole.tar.gz \
+RUN curl -fsSL 'http://pecl.php.net/get/swoole-2.1.1.tgz' -o swoole.tar.gz \
     && mkdir -p swoole \
     && tar -xf swoole.tar.gz -C swoole --strip-components=1 \
     && rm swoole.tar.gz \
     && ( \
         cd swoole \
         && phpize \
-        && ./configure --enable-coroutine \
+        && ./configure \
         && make -j$(nproc) \
         && make install \
     ) \
