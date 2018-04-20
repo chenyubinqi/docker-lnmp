@@ -10,7 +10,7 @@ services:
           - php:ro
     volumes:
       - ~/tmp/log/nginx:/var/log/nginx
-    container_name: nginx
+    container_name: lnmp-nginx
     networks:
       default:
         ipv4_address: 172.18.0.2
@@ -24,7 +24,7 @@ services:
     volumes:
       - ~/PhpstormProjects:/opt/PhpstormProjects
       - ~/htdocs:/opt/htdocs
-    container_name: php
+    container_name: lnmp-php
     networks:
       default:
         ipv4_address: 172.18.0.3
@@ -35,7 +35,7 @@ services:
       - "3306:3306"
     volumes:
       - ~/tmp/data/mysql:/var/lib/mysql
-    container_name: mysql
+    container_name: lnmp-mysql
     environment:
       MYSQL_ROOT_PASSWORD: 123456
     networks:
