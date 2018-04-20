@@ -16,7 +16,7 @@ services:
         ipv4_address: 172.18.0.2
 
   php:
-    build: ./php/7.2-rc
+    build: ./php/7.2
     ports:
       - "9000:9000"
 #    links:
